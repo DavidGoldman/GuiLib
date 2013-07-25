@@ -117,9 +117,17 @@ public class Container {
 
 		List<Widget> overlays = new ArrayList<Widget>();
 
+		/*
+		 * Fix to prevent clipped widgets to thinking that they extend outside 
+		 * of the container when checking for hover. 
+		 */
+		boolean mouseInBounds = mx >= left && my >= top && mx < right && my < bottom;
+		int widgetX = (mouseInBounds || !clip) ? mx : -1;
+		int widgetY = (mouseInBounds || !clip) ? my : -1;
+		
 		for (Widget w : widgets) {
 			if (w.shouldRender(top, bottom)) {
-				w.draw(mx, my);
+				w.draw(widgetX, widgetY);
 				overlays.addAll(w.getTooltips());
 			}
 		}
