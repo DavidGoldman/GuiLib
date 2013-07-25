@@ -5,15 +5,16 @@ import java.util.List;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.mcf.davidee.guilib.core.Button;
+import com.mcf.davidee.guilib.core.Button.ButtonHandler;
 import com.mcf.davidee.guilib.core.Container;
 import com.mcf.davidee.guilib.core.Widget;
-import com.mcf.davidee.guilib.core.Button.ButtonHandler;
 
 /**
  * 
@@ -81,8 +82,9 @@ public abstract class BasicScreen extends GuiScreen {
 	public void drawScreen(int mx, int my, float f) {
 		drawBackground();
 		List<Widget> overlays = new ArrayList<Widget>();
+		int scale = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight).getScaleFactor();
 		for (Container c : containers)
-			overlays.addAll(c.draw(mx, my, mc.displayWidth / width));
+			overlays.addAll(c.draw(mx, my, scale));
 		for (Widget w : overlays)
 			w.draw(mx, my);
 	}
