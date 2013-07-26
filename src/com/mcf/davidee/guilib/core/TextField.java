@@ -55,8 +55,7 @@ public abstract class TextField extends FocusableWidget {
 
 		int j = cursorPosition - charOffset;
 		int k = selectionEnd - charOffset;
-		String s = mc.fontRenderer.trimStringToWidth(
-				text.substring(charOffset), getInternalWidth());
+		String s = mc.fontRenderer.trimStringToWidth(text.substring(charOffset), getInternalWidth());
 		boolean flag = j >= 0 && j <= s.length();
 		boolean cursor = focused && this.cursorCounter / 6 % 2 == 0 && flag;
 		int l = getDrawX();
@@ -84,15 +83,13 @@ public abstract class TextField extends FocusableWidget {
 			mc.fontRenderer.drawStringWithShadow(s.substring(j), j1, i1, color);
 		if (cursor) {
 			if (flag2)
-				Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1
-						+ mc.fontRenderer.FONT_HEIGHT, -3092272);
+				Gui.drawRect(k1, i1 - 1, k1 + 1, i1 + 1 + mc.fontRenderer.FONT_HEIGHT, -3092272);
 			else
 				mc.fontRenderer.drawStringWithShadow("_", k1, i1, color);
 		}
 		if (k != j) {
 			int l1 = l + mc.fontRenderer.getStringWidth(s.substring(0, k));
-			drawCursorVertical(k1, i1 - 1, l1 - 1, i1 + 1
-					+ mc.fontRenderer.FONT_HEIGHT);
+			drawCursorVertical(k1, i1 - 1, l1 - 1, i1 + 1 + mc.fontRenderer.FONT_HEIGHT);
 		}
 
 	}

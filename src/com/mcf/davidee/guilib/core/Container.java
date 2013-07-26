@@ -118,8 +118,8 @@ public class Container {
 		List<Widget> overlays = new ArrayList<Widget>();
 
 		/*
-		 * Fix to prevent clipped widgets to thinking that they extend outside 
-		 * of the container when checking for hover. 
+		 * Fix to prevent clipped widgets from thinking that they extend 
+		 * outside of the container when checking for hover. 
 		 */
 		boolean mouseInBounds = mx >= left && my >= top && mx < right && my < bottom;
 		int widgetX = (mouseInBounds || !clip) ? mx : -1;
@@ -158,8 +158,7 @@ public class Container {
 		if (mx >= left && my >= top && mx < right && my < bottom) {
 			boolean resetFocus = true;
 
-			if (scrollbar != null && scrollbar.shouldRender(top, bottom)
-					&& scrollbar.inBounds(mx, my))
+			if (scrollbar != null && scrollbar.shouldRender(top, bottom) && scrollbar.inBounds(mx, my))
 				return true;
 
 			for (Widget w : widgets) {
@@ -241,8 +240,7 @@ public class Container {
 	}
 
 	public boolean keyTyped(char c, int code) {
-		boolean handled = (focusIndex != -1) ? focusList.get(focusIndex)
-				.keyTyped(c, code) : false;
+		boolean handled = (focusIndex != -1) ? focusList.get(focusIndex).keyTyped(c, code) : false;
 				if (!handled) {
 					switch (code) {
 					case Keyboard.KEY_UP:

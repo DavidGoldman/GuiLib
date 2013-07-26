@@ -63,7 +63,7 @@ public abstract class BasicScreen extends GuiScreen {
 	}
 
 	/**
-	 * Called when the selected container did not capture this keyboard event.
+	 * Called when the selectedContainer did not capture this keyboard event.
 	 * 
 	 * @param c Character typed (if any)
 	 * @param code Keyboard.KEY_ code for this key

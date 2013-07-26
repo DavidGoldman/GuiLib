@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.Tessellator;
 
 /**
  * 
- * Widget is the main basis of the library.
+ * Widgets are the core of this library.
  * All controls should be a subclass of Widget.
  *
  */
@@ -99,7 +99,7 @@ public abstract class Widget extends Gui {
 	 * Called when the mouse wheel has moved.
 	 * 
 	 * @param delta Clamped difference, currently either +5 or -5
-	 * @return When this widget has captured this mouse wheel event
+	 * @return Whether this widget has captured this mouse wheel event
 	 */
 	public boolean mouseWheel(int delta) { 
 		return false;
@@ -115,7 +115,7 @@ public abstract class Widget extends Gui {
 	}
 
 	/**
-	 * Called to see if the specified coordinate is in boundss.
+	 * Called to see if the specified coordinate is in bounds.
 	 * 
 	 * @param mx Mouse-X
 	 * @param my Mouse-Y
