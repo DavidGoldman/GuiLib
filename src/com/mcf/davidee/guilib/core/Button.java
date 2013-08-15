@@ -41,4 +41,5 @@ public abstract class Button extends Widget {
 		return "";
 	}
 
+	public void setText(String str) { }
 }

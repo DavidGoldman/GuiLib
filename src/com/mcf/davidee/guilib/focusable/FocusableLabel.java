@@ -20,7 +20,6 @@ public class FocusableLabel extends FocusableWidget implements Shiftable {
 	private List<Widget> tooltips;
 	private boolean hover, center, focused;
 	private Object userData;
-
 	
 	public FocusableLabel(String text, int color, int hoverColor, int focusColor, Widget... tooltips) {
 		this(text, color, hoverColor, focusColor, true, tooltips);
@@ -51,6 +50,12 @@ public class FocusableLabel extends FocusableWidget implements Shiftable {
 		this(text, 0xffffff, 16777120, 0x22aaff, true, tooltips);
 		
 		setPosition(x, y);
+	}
+	
+	public void setColors(int color, int hoverColor, int focusColor) {
+		this.color = color;
+		this.hoverColor = hoverColor;
+		this.focusColor = focusColor;
 	}
 
 	public void setColor(int color) {
