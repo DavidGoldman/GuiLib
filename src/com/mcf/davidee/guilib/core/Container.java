@@ -121,7 +121,7 @@ public class Container {
 		 * Fix to prevent clipped widgets from thinking that they extend 
 		 * outside of the container when checking for hover. 
 		 */
-		boolean mouseInBounds = mx >= left && my >= top && mx < right && my < bottom;
+		boolean mouseInBounds = inBounds(mx, my);
 		int widgetX = (mouseInBounds || !clip) ? mx : -1;
 		int widgetY = (mouseInBounds || !clip) ? my : -1;
 		
@@ -153,9 +153,13 @@ public class Container {
 			focusIndex = newIndex;
 		}
 	}
+	
+	public boolean inBounds(int mx, int my) {
+		return mx >= left && my >= top && mx < right && my < bottom;
+	}
 
 	public boolean mouseClicked(int mx, int my) {
-		if (mx >= left && my >= top && mx < right && my < bottom) {
+		if (inBounds(mx, my)) {
 			boolean resetFocus = true;
 
 			if (scrollbar != null && scrollbar.shouldRender(top, bottom) && scrollbar.inBounds(mx, my))

@@ -118,12 +118,29 @@ public abstract class BasicScreen extends GuiScreen {
 		}
 	}
 
+	/**
+	 * See {@link GuiScreen#handleMouseInput} for more information about mx and my.
+	 */
 	@Override
 	public void handleMouseInput() {
 		super.handleMouseInput();
 		int delta = Mouse.getEventDWheel();
-		if (delta != 0 && selectedContainer != null)
-			selectedContainer.mouseWheel(MathHelper.clamp_int(delta,-5,5));
+		if (delta != 0) {
+			int mx = Mouse.getEventX() * this.width / this.mc.displayWidth;
+			int my = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+			boolean handled = false;
+			delta = MathHelper.clamp_int(delta, -5, 5);
+			
+			for (Container c : containers) {
+				if (c.inBounds(mx, my)) {
+					c.mouseWheel(delta);
+					handled = true;
+					break;
+				}
+			}
+			if (!handled && selectedContainer != null)
+				selectedContainer.mouseWheel(delta);
+		}
 	}
 
 	@Override
