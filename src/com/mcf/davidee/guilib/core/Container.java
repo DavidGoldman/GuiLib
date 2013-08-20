@@ -97,7 +97,7 @@ public class Container {
 					maxY = w.y + w.height;
 			}
 		}
-		cHeight = (minY > maxY) ? 0 : maxY - minY + 1 + extraScrollHeight;
+		cHeight = (minY > maxY) ? 0 : maxY - minY + extraScrollHeight;
 	}
 
 	public int getContentHeight() {
