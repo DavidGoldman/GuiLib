@@ -292,7 +292,7 @@ public class Container {
 			shiftFocus(MathHelper.clamp_int(focusIndex + delta, 0,
 					focusList.size() - 1));
 		else if (scrollbar != null && scrollbar.shouldRender(top, bottom))
-			scrollbar.shift(delta * 4);
+			scrollbar.shift(delta * -4);
 	}
 
 	public void mouseWheel(int delta) {
