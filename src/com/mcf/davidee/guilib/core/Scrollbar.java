@@ -119,6 +119,33 @@ public abstract class Scrollbar extends Widget {
 		return getHeightDifference() > 0;
 	}
 
+	/**
+	 * Shifts this scrollbar relative to its size + contentHeight.
+	 * 
+	 * @param i Base pixels to shift.
+	 */
+	public void shiftRelative(int i) {
+		int heightDiff = getHeightDifference();
+		if (heightDiff > 0) {
+			i *= 1 + heightDiff/(float)(bottomY-topY);
+			//shift(i) inlined
+			int dif = offset + i;
+			if (dif > 0)
+				dif = 0;
+			if (dif < -heightDiff)
+				dif = -heightDiff;
+			int result = dif - offset;
+			if (result != 0)
+				shiftChildren(result);
+			offset = dif;
+		}
+	}
+
+	/**
+	 * Shifts the scrollbar by i pixels.
+	 * 
+	 * @param i How many pixels to shift the scrollbar.
+	 */
 	public void shift(int i) {
 		int heightDiff = getHeightDifference();
 		if (heightDiff > 0) {

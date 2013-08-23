@@ -289,15 +289,14 @@ public class Container {
 
 	protected void shift(int delta) {
 		if (focusIndex != -1)
-			shiftFocus(MathHelper.clamp_int(focusIndex + delta, 0,
-					focusList.size() - 1));
+			shiftFocus(MathHelper.clamp_int(focusIndex + delta, 0, focusList.size() - 1));
 		else if (scrollbar != null && scrollbar.shouldRender(top, bottom))
-			scrollbar.shift(delta * -4);
+			scrollbar.shiftRelative(delta * -4);
 	}
 
 	public void mouseWheel(int delta) {
 		if (scrollbar != null && scrollbar.shouldRender(top, bottom))
-			scrollbar.shift(delta);
+			scrollbar.shiftRelative(delta);
 		else {
 			boolean done = false;
 			if (focusIndex != -1)
