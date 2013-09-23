@@ -7,7 +7,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "guilib", name = "GUI Library", version = "1.0.6")
+@Mod(modid = "guilib", name = "GUI Library", version = "1.0.6.1")
 public class GuiLibrary {
 
 	

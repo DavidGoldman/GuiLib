@@ -38,7 +38,7 @@ public class SliderVanilla extends Slider {
 			value = MathHelper.clamp_float(value, 0, 1);
 		}
 
-		mc.renderEngine.func_110577_a(TEXTURE);
+		mc.renderEngine.bindTexture(TEXTURE);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(x, y, 0, 46, width / 2, height);
 		drawTexturedModalRect(x + width / 2, y, 200 - width / 2, 46, width / 2, height);

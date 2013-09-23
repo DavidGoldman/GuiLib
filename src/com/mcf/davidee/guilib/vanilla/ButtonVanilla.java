@@ -29,7 +29,7 @@ public class ButtonVanilla extends Button {
 
 	@Override
 	public void draw(int mx, int my) {
-		mc.renderEngine.func_110577_a(TEXTURE);
+		mc.renderEngine.bindTexture(TEXTURE);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		boolean hover = inBounds(mx, my);
 		int u = 0, v = 46 + getStateOffset(hover);

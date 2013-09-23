@@ -36,7 +36,7 @@ public class CheckboxVanilla extends Checkbox {
 
 	@Override
 	public void draw(int mx, int my) {
-		mc.renderEngine.func_110577_a(TEXTURE);
+		mc.renderEngine.bindTexture(TEXTURE);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(x, y, 0, check ? SIZE : 0, SIZE, SIZE);
 		mc.fontRenderer.drawStringWithShadow(str, x + SIZE + 1, y + 1, (inBounds(mx, my)) ? 16777120 : 0xffffff);
