@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import org.lwjgl.opengl.GL11;
@@ -45,7 +46,7 @@ public class ItemButton extends Button implements Shiftable {
 	}
 
 	protected void setItem(ItemStack item) {
-		if (item.getItem() == null && item.itemID != 0)
+		if (item.getItem() == null && Item.func_150891_b(item.getItem()) != 0)      /* getIdFromItem */
 			throw new IllegalArgumentException("Item to display does not exist");
 		this.item = item;
 		this.tooltip = Arrays.asList((Widget)new ItemTooltip(item, parent));
@@ -63,7 +64,8 @@ public class ItemButton extends Button implements Shiftable {
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			tooltip.get(0).setPosition(mx, my);
 		}
-		if (item.itemID != 0) {
+        //getIdFromItem
+		if (Item.func_150891_b(item.getItem()) != 0) {
 			RenderHelper.enableGUIStandardItemLighting();
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);

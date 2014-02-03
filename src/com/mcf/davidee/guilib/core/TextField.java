@@ -268,13 +268,13 @@ public abstract class TextField extends FocusableWidget {
 				setSelectionPos(0);
 				return true;
 			case 3:
-				GuiScreen.setClipboardString(getSelectedtext());
+				GuiScreen.func_146275_d(getSelectedtext()); /* setClipboardString */
 				return true;
 			case 22:
-				writeText(GuiScreen.getClipboardString());
+				writeText(GuiScreen.func_146277_j());   /* getClipboardString */
 				return true;
 			case 24:
-				GuiScreen.setClipboardString(this.getSelectedtext());
+				GuiScreen.func_146275_d(this.getSelectedtext());    /* setClipboardString */
 				writeText("");
 				return true;
 			default:
@@ -287,19 +287,19 @@ public abstract class TextField extends FocusableWidget {
 					this.setCursorPosition(0);
 					return true;
 				case 203:
-					if (GuiScreen.isShiftKeyDown())
+					if (GuiScreen.func_146272_n())  /* isShiftKeyDown */
 						setSelectionPos(selectionEnd - 1);
 					else
 						moveCursorBy(-1);
 					return true;
 				case 205:
-					if (GuiScreen.isShiftKeyDown())
+					if (GuiScreen.func_146272_n())  /* isShiftKeyDown */
 						setSelectionPos(selectionEnd + 1);
 					else
 						moveCursorBy(1);
 					return true;
 				case 207:
-					if (GuiScreen.isShiftKeyDown())
+					if (GuiScreen.func_146272_n())  /* isShiftKeyDown */
 						setSelectionPos(text.length());
 					else
 						setCursorPosition(text.length());
