@@ -40,9 +40,7 @@ public class ItemTooltip extends Widget {
 	private static String getUnknownName(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item instanceof ItemBlock) {
-			int id = ((ItemBlock)item).getBlockID();
-			Class c = Block.blocksList[id].getClass();
-			return NAME_MAP.containsKey(c) ? NAME_MAP.get(c) : "Unknown";
+            return ((ItemBlock)item).getUnlocalizedName();
 		}
 		return "Unknown";
 	}
@@ -57,18 +55,18 @@ public class ItemTooltip extends Widget {
 	public ItemTooltip(ItemStack stack, GuiScreen parent) {
 		super(0, 0);
 
-		if (stack.itemID != 0) {
+        //getIdFromItem
+		if (Item.func_150891_b(stack.getItem()) != 0) {
 			tooltips = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
 			if (!tooltips.isEmpty()) {
 				String name = tooltips.get(0);
 				if (name.startsWith("tile.null.name")) 
 					name = name.replace("tile.null.name", getUnknownName(stack));
-				tooltips.set(0, SECTION + Integer.toHexString(stack.getRarity().rarityColor) + name);
+				tooltips.set(0, SECTION + "" + stack.getRarity().rarityColor + name);
 				for (int i = 1; i < tooltips.size(); ++i)
 					tooltips.set(i, EnumChatFormatting.GRAY + tooltips.get(i));
 			}
-			FontRenderer itemRenderer = stack.getItem().getFontRenderer(stack);
-			font = (itemRenderer == null) ? mc.fontRenderer : itemRenderer;
+			font = mc.fontRenderer;
 		}
 		else {
 			tooltips = Arrays.asList("Air");
@@ -83,10 +81,10 @@ public class ItemTooltip extends Widget {
 	public void setPosition(int newX, int newY) {
 		this.x = newX + 12;
 		this.y = newY - 12;
-		if (x + width + 6 > parent.width)
+		if (x + width + 6 > parent.field_146294_l)      /* width */
 			x -= 28 + width;
-		if (y + height + 6 > parent.height)
-			y = parent.height - height - 6;
+		if (y + height + 6 > parent.field_146295_m)     /* height */
+			y = parent.field_146295_m - height - 6;     /* height */
 	}
 
 

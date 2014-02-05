@@ -1,6 +1,8 @@
 package com.mcf.davidee.guilib.vanilla;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -30,13 +32,14 @@ public class CheckboxVanilla extends Checkbox {
 	
 	@Override
 	public void handleClick(int mx, int my) {
-		mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+		//getSoundHandler.playSound; unknown
+		mc.func_147118_V().func_147682_a(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 		super.handleClick(mx, my);
 	}
 
 	@Override
 	public void draw(int mx, int my) {
-		mc.renderEngine.bindTexture(TEXTURE);
+		mc.getTextureManager().bindTexture(TEXTURE);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(x, y, 0, check ? SIZE : 0, SIZE, SIZE);
 		mc.fontRenderer.drawStringWithShadow(str, x + SIZE + 1, y + 1, (inBounds(mx, my)) ? 16777120 : 0xffffff);

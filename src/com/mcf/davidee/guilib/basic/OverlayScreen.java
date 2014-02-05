@@ -24,8 +24,8 @@ public abstract class OverlayScreen extends BasicScreen {
 
 	@Override
 	protected void revalidateGui() {
-		bg.width = width;
-		bg.height = height;
+		bg.field_146294_l = field_146294_l; /* width */
+		bg.field_146295_m = field_146295_m; /* height */
 		bg.revalidateGui();
 	}
 

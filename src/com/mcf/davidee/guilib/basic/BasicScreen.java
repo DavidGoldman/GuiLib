@@ -2,7 +2,7 @@ package com.mcf.davidee.guilib.basic;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
@@ -59,7 +59,9 @@ public abstract class BasicScreen extends GuiScreen {
 	}
 
 	public void close() {
-		mc.displayGuiScreen(parent);
+        Minecraft mc = Minecraft.getMinecraft();
+        //displayGuiScreen
+		mc.func_147108_a(parent);
 	}
 
 	/**
@@ -74,13 +76,15 @@ public abstract class BasicScreen extends GuiScreen {
 	 * Called to draw this screen's background
 	 */
 	protected void drawBackground() {
-		drawDefaultBackground();
+		//drawDefaultBackground
+        func_146276_q_();
 	}
 
 	
 	@Override
 	public void drawScreen(int mx, int my, float f) {
 		drawBackground();
+        Minecraft mc = Minecraft.getMinecraft();
 		List<Widget> overlays = new ArrayList<Widget>();
 		int scale = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight).getScaleFactor();
 		for (Container c : containers)
@@ -111,7 +115,7 @@ public abstract class BasicScreen extends GuiScreen {
 	}
 
 	@Override
-	protected void mouseMovedOrUp(int mx, int my, int code) {
+	protected void func_146286_b(int mx, int my, int code) {    /* mouseMovedOrUp */
 		if (code == 0){
 			for (Container c : containers)
 				c.mouseReleased(mx, my);
@@ -122,12 +126,15 @@ public abstract class BasicScreen extends GuiScreen {
 	 * See {@link GuiScreen#handleMouseInput} for more information about mx and my.
 	 */
 	@Override
-	public void handleMouseInput() {
-		super.handleMouseInput();
+	public void func_146274_d() {   /* handleMouseInput */
+		super.func_146274_d();
+        Minecraft mc = Minecraft.getMinecraft();
+        int width = field_146294_l;
+        int height = field_146295_m;
 		int delta = Mouse.getEventDWheel();
 		if (delta != 0) {
-			int mx = Mouse.getEventX() * this.width / this.mc.displayWidth;
-			int my = this.height - Mouse.getEventY() * this.height / this.mc.displayHeight - 1;
+			int mx = Mouse.getEventX() * width / mc.displayWidth;
+			int my = height - Mouse.getEventY() * height / mc.displayHeight - 1;
 			boolean handled = false;
 			delta = MathHelper.clamp_int(delta, -5, 5);
 			
@@ -171,7 +178,7 @@ public abstract class BasicScreen extends GuiScreen {
 
 
 	@Override
-	public void onGuiClosed() {
+	public void func_146281_b() {   /* onGuiClosed */
 		closed = true;
 		Keyboard.enableRepeatEvents(false);
 	}

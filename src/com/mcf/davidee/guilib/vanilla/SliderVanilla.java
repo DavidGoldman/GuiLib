@@ -1,5 +1,8 @@
 package com.mcf.davidee.guilib.vanilla;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +31,8 @@ public class SliderVanilla extends Slider {
 	@Override
 	public void handleClick(int mx, int my) {
 		super.handleClick(mx, my);
-		mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+		//getSoundHandler.playSound; unknown
+		mc.func_147118_V().func_147682_a(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 	}
 
 	@Override
@@ -38,7 +42,7 @@ public class SliderVanilla extends Slider {
 			value = MathHelper.clamp_float(value, 0, 1);
 		}
 
-		mc.renderEngine.bindTexture(TEXTURE);
+		mc.getTextureManager().bindTexture(TEXTURE);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		drawTexturedModalRect(x, y, 0, 46, width / 2, height);
 		drawTexturedModalRect(x + width / 2, y, 200 - width / 2, 46, width / 2, height);
