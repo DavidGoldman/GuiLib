@@ -2,8 +2,6 @@ package com.mcf.davidee.guilib.core;
 
 import net.minecraft.util.MathHelper;
 
-import com.mcf.davidee.guilib.core.Scrollbar.Shiftable;
-
 /**
  * 
  * Abstract representation of a minecraft slider.

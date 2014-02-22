@@ -1,6 +1,5 @@
 package com.mcf.davidee.guilib.core;
 
-import com.mcf.davidee.guilib.core.Scrollbar.Shiftable;
 
 /**
  * 

@@ -40,9 +40,8 @@ public class ItemTooltip extends Widget {
 	private static String getUnknownName(ItemStack stack) {
 		Item item = stack.getItem();
 		if (item instanceof ItemBlock) {
-			int id = ((ItemBlock)item).getBlockID();
-			Class c = Block.blocksList[id].getClass();
-			return NAME_MAP.containsKey(c) ? NAME_MAP.get(c) : "Unknown";
+			Class<? extends Block> blockClass = ((ItemBlock)item).field_150939_a.getClass();
+			return NAME_MAP.containsKey(blockClass) ? NAME_MAP.get(blockClass) : "Unknown";
 		}
 		return "Unknown";
 	}
@@ -54,16 +53,17 @@ public class ItemTooltip extends Widget {
 	/**
 	 * See {@link net.minecraft.client.gui.inventory.GuiContainer#drawScreen} for more information.
 	 */
+	@SuppressWarnings("unchecked")
 	public ItemTooltip(ItemStack stack, GuiScreen parent) {
 		super(0, 0);
 
-		if (stack.itemID != 0) {
-			tooltips = stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
+		if (stack.getItem() != null) {
+			tooltips = (List<String>) stack.getTooltip(mc.thePlayer, mc.gameSettings.advancedItemTooltips);
 			if (!tooltips.isEmpty()) {
 				String name = tooltips.get(0);
 				if (name.startsWith("tile.null.name")) 
 					name = name.replace("tile.null.name", getUnknownName(stack));
-				tooltips.set(0, SECTION + Integer.toHexString(stack.getRarity().rarityColor) + name);
+				tooltips.set(0, SECTION + stack.getRarity().rarityColor.toString() + name);
 				for (int i = 1; i < tooltips.size(); ++i)
 					tooltips.set(i, EnumChatFormatting.GRAY + tooltips.get(i));
 			}

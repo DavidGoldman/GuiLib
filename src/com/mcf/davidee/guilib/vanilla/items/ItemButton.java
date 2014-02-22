@@ -19,7 +19,7 @@ import com.mcf.davidee.guilib.core.Widget;
 /**
  * 
  * This class is a Widget copy of a vanilla item button. 
- * This button supports "Air" - an item with ID 0.
+ * This button supports "Air" - an itemstack without an item.
  * 
  * Note that items use zLevel for rendering - change zLevel as needed.
  *
@@ -45,8 +45,9 @@ public class ItemButton extends Button implements Shiftable {
 	}
 
 	protected void setItem(ItemStack item) {
+		/* Looks like if it's null, it's air.
 		if (item.getItem() == null && item.itemID != 0)
-			throw new IllegalArgumentException("Item to display does not exist");
+			throw new IllegalArgumentException("Item to display does not exist");*/
 		this.item = item;
 		this.tooltip = Arrays.asList((Widget)new ItemTooltip(item, parent));
 	}
@@ -63,7 +64,7 @@ public class ItemButton extends Button implements Shiftable {
 			GL11.glEnable(GL11.GL_DEPTH_TEST);
 			tooltip.get(0).setPosition(mx, my);
 		}
-		if (item.itemID != 0) {
+		if (item.getItem() != null) {
 			RenderHelper.enableGUIStandardItemLighting();
 			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240, 240);
 			GL11.glEnable(GL12.GL_RESCALE_NORMAL);

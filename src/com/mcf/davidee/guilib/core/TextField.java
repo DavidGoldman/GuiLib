@@ -7,7 +7,6 @@ import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mcf.davidee.guilib.core.Scrollbar.Shiftable;
 import com.mcf.davidee.guilib.focusable.FocusableWidget;
 
 /**
@@ -192,7 +191,6 @@ public abstract class TextField extends FocusableWidget {
 		int j = this.cursorPosition < this.selectionEnd ? this.selectionEnd
 				: this.cursorPosition;
 		int k = maxLength - text.length() - (i - this.selectionEnd);
-		boolean flag = false;
 
 		if (this.text.length() > 0)
 			s1 = s1 + this.text.substring(0, i);

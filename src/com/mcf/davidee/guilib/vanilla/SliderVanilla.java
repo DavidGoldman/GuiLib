@@ -1,5 +1,6 @@
 package com.mcf.davidee.guilib.vanilla;
 
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -28,7 +29,7 @@ public class SliderVanilla extends Slider {
 	@Override
 	public void handleClick(int mx, int my) {
 		super.handleClick(mx, my);
-		mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+		mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 	}
 
 	@Override

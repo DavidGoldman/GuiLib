@@ -1,6 +1,7 @@
 package com.mcf.davidee.guilib.vanilla;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -30,7 +31,7 @@ public class CheckboxVanilla extends Checkbox {
 	
 	@Override
 	public void handleClick(int mx, int my) {
-		mc.sndManager.playSoundFX("random.click", 1.0F, 1.0F);
+		mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0F));
 		super.handleClick(mx, my);
 	}
 
