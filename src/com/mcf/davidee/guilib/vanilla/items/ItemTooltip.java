@@ -27,8 +27,6 @@ import com.mcf.davidee.guilib.core.Widget;
  */
 public class ItemTooltip extends Widget {
 	
-	public static final char SECTION = '\u00a7';
-	
 	public static final Map<Class<?>, String> NAME_MAP = new HashMap<Class<?>, String>();
 	
 	static {
@@ -63,9 +61,9 @@ public class ItemTooltip extends Widget {
 				String name = tooltips.get(0);
 				if (name.startsWith("tile.null.name")) 
 					name = name.replace("tile.null.name", getUnknownName(stack));
-				tooltips.set(0, SECTION + stack.getRarity().rarityColor.toString() + name);
+				tooltips.set(0, stack.getRarity().rarityColor.toString() + name);
 				for (int i = 1; i < tooltips.size(); ++i)
-					tooltips.set(i, EnumChatFormatting.GRAY + tooltips.get(i));
+					tooltips.set(i, EnumChatFormatting.GRAY.toString() + tooltips.get(i));
 			}
 			FontRenderer itemRenderer = stack.getItem().getFontRenderer(stack);
 			font = (itemRenderer == null) ? mc.fontRenderer : itemRenderer;

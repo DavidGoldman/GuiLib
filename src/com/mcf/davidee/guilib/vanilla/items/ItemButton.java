@@ -24,6 +24,8 @@ import com.mcf.davidee.guilib.core.Widget;
  * Note that items use zLevel for rendering - change zLevel as needed.
  *
  */
+
+//TODO Verify that an ItemStack without an item is a valid representation for Air
 public class ItemButton extends Button implements Shiftable {
 
 	public static final int WIDTH = 18;
@@ -45,9 +47,6 @@ public class ItemButton extends Button implements Shiftable {
 	}
 
 	protected void setItem(ItemStack item) {
-		/* Looks like if it's null, it's air.
-		if (item.getItem() == null && item.itemID != 0)
-			throw new IllegalArgumentException("Item to display does not exist");*/
 		this.item = item;
 		this.tooltip = Arrays.asList((Widget)new ItemTooltip(item, parent));
 	}
