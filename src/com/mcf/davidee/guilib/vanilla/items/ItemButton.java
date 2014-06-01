@@ -20,12 +20,12 @@ import com.mcf.davidee.guilib.core.Widget;
  * 
  * This class is a Widget copy of a vanilla item button. 
  * This button supports "Air" - an itemstack without an item.
+ * Note that the air representation is volatile - getItem() returns null, and calling toString() on the itemstack will crash.
  * 
  * Note that items use zLevel for rendering - change zLevel as needed.
  *
  */
 
-//TODO Verify that an ItemStack without an item is a valid representation for Air
 public class ItemButton extends Button implements Shiftable {
 
 	public static final int WIDTH = 18;
@@ -50,9 +50,13 @@ public class ItemButton extends Button implements Shiftable {
 		this.item = item;
 		this.tooltip = Arrays.asList((Widget)new ItemTooltip(item, parent));
 	}
+	
+	public ItemStack getItem() {
+		return item;
+	}
 
 	/**
-	 * Draws the item or string "Air" if itemID = 0.
+	 * Draws the item or string "Air" if stack.getItem() is null
 	 */
 	@Override
 	public void draw(int mx, int my) {
