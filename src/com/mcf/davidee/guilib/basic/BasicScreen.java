@@ -82,7 +82,7 @@ public abstract class BasicScreen extends GuiScreen {
 	public void drawScreen(int mx, int my, float f) {
 		drawBackground();
 		List<Widget> overlays = new ArrayList<Widget>();
-		int scale = new ScaledResolution(mc.gameSettings, mc.displayWidth, mc.displayHeight).getScaleFactor();
+		int scale = new ScaledResolution(mc, mc.displayWidth, mc.displayHeight).getScaleFactor();
 		for (Container c : containers)
 			overlays.addAll(c.draw(mx, my, scale));
 		for (Widget w : overlays)
